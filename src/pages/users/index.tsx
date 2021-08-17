@@ -17,6 +17,7 @@ import {
   Tr, 
   Text 
 } from "@chakra-ui/react";
+import { Pagination } from "../../components/Pagination";
 
 export default function UserList() {
   return (
@@ -135,6 +136,8 @@ export default function UserList() {
               </Tr>
             </Tbody>
           </Table>
+
+          <Pagination />
         </Box>
       </Flex>
     </Box>
