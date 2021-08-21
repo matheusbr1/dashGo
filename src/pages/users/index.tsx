@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
+import { Sidebar } from "../../components/SideBar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { 
   Box, 
