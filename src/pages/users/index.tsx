@@ -19,6 +19,7 @@ import {
   useBreakpointValue
 } from "@chakra-ui/react";
 import { Pagination } from "../../components/Pagination";
+import Link from "next/link";
 
 export default function UserList() {
   const isWideVersion = useBreakpointValue({
@@ -37,14 +38,16 @@ export default function UserList() {
           <Flex mb='8' justify='space-between' align='center' >
             <Heading size='lg' fontWeight='normal' > Usuários </Heading>
 
-            <Button 
-              as='a' 
-              size='sm' 
-              colorScheme='pink' 
-              leftIcon={<Icon as={RiAddLine} fontSize='20' />}
-            >
-              Criar Novo
-            </Button>
+            <Link href='/users/create' passHref >
+              <Button 
+                as='a' 
+                size='sm' 
+                colorScheme='pink' 
+                leftIcon={<Icon as={RiAddLine} fontSize='20' />}
+              >
+                Criar Novo
+              </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme='whiteAlpha' >

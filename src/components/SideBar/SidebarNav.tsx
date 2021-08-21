@@ -7,13 +7,13 @@ export function SidebarNav () {
   return (
     <Stack spacing='12' align='flex-start' >
       <NavSection title='GERAL' >
-        <NavLink icon={RiDashboardLine} > DashBoard </NavLink>
-        <NavLink icon={RiContactsLine} > Usuários </NavLink>
+        <NavLink href='/dashboard' icon={RiDashboardLine} > DashBoard </NavLink>
+        <NavLink href='/users' icon={RiContactsLine} > Usuários </NavLink>
       </NavSection>
 
       <NavSection title='AUTOMAÇAO' >
-        <NavLink icon={RiDashboardLine} > Formulários </NavLink>
-        <NavLink icon={RiContactsLine} > Automação </NavLink>
+        <NavLink href='/forms' icon={RiDashboardLine} > Formulários </NavLink>
+        <NavLink href='/automation' icon={RiContactsLine} > Automação </NavLink>
       </NavSection>
     </Stack>
   )
