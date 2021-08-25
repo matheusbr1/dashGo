@@ -5,8 +5,8 @@ import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack } from 
 import { Input } from "../../components/Form/Input";
 import Link from "next/link";
 import { SubmitHandler, useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 interface CreateUserFormData {
   name: string
