@@ -27,8 +27,6 @@ export default function UserList() {
   // users é a chave no cache
   const { data, isLoading, error, isFetching } = useUsers()
 
-  console.log(data)
-
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true
@@ -92,7 +90,7 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map(user => (
+                  {data?.map(user => (
                     <Tr key={user.id} >
                       <Td px={['4', '4','6']} padding='0' >
                         <Checkbox colorScheme='pink'  />
@@ -126,7 +124,11 @@ export default function UserList() {
                 </Tbody>
               </Table>
 
-              <Pagination />
+              <Pagination 
+                totalCountOfRegisters={200}
+                currentPage={5}
+                onPageChange={() => {}}
+              />
             </>
           )}
           

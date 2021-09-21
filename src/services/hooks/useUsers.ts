@@ -8,10 +8,10 @@ type User = {
   createdAt: string
 }
 
-export async function getUsers () {
+export async function getUsers(): Promise<User[]> {
   const { data } = await api.get('users')
 
-  const users = data.users.map(user => ({
+  const users = data?.users?.map(user => ({
     id: user.id,
     name: user.name,
     email: user.email,
@@ -26,7 +26,7 @@ export async function getUsers () {
 }
 
 export function useUsers() {
-  return useQuery<User[]>('users', getUsers, {
+  return useQuery('users', getUsers, {
     staleTime: 1000 * 5 // 5 seconds
   })
 }
