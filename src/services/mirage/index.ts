@@ -30,7 +30,7 @@ export function makeServer () {
     
     // Inicializando o app com dados
     seeds(server) {
-      server.createList('user', 30)
+      server.createList('user', 100)
     },
 
     // Configurando as rotas
