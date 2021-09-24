@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import { Sidebar } from "../../components/SideBar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { Pagination } from "../../components/Pagination";
+import NextLink from "next/link";
+import { useUsers } from "../../services/hooks/useUsers";
+import { queryClient } from '../../services/queryClient'
+import api from "../../services/api";
 import { 
   Box, 
   Button, 
@@ -17,11 +22,9 @@ import {
   Tr, 
   Text, 
   useBreakpointValue,
-  Spinner
+  Spinner,
+  Link
 } from "@chakra-ui/react";
-import { Pagination } from "../../components/Pagination";
-import Link from "next/link";
-import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
   // users é a chave no cache
@@ -33,6 +36,16 @@ export default function UserList() {
     base: false,
     lg: true
   })
+
+  async function handlePrefetchUser (userId: number) {
+    await queryClient.prefetchQuery(['users', userId], async () => {
+      const { data } = await api.get(`users/${userId}`)
+
+      return data
+    }, {
+      staleTime: 1000 * 60 * 10 // 10 minutes
+    })
+  }
 
   return (
     <Box>
@@ -50,7 +63,7 @@ export default function UserList() {
               )}
             </Heading>
 
-            <Link href='/users/create' passHref >
+            <NextLink href='/users/create' passHref >
               <Button 
                 as='a' 
                 size='sm' 
@@ -59,7 +72,7 @@ export default function UserList() {
               >
                 Criar Novo
               </Button>
-            </Link>
+            </NextLink>
           </Flex>
 
           {isLoading ? (
@@ -99,7 +112,9 @@ export default function UserList() {
                       </Td>
                       <Td>
                         <Box>
-                          <Text fontWeight='bold' > {user.name} </Text>
+                          <Link color='purple.400' onMouseEnter={() => handlePrefetchUser(user.id)} >
+                            <Text fontWeight='bold' > {user.name} </Text>
+                          </Link>
                           <Text fontSize='sm' color='gray.300' > {user.email} </Text>
                         </Box>
                       </Td>
